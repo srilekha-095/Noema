@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createPost, getAllPosts, getSinglePost } = require('../controllers/postController');
+const { createPost, getAllPosts, getSinglePost, updatePost, deletePost } = require('../controllers/postController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/uploadMiddleware');
 
@@ -11,6 +11,8 @@ router.route('/')
 
 // Single post route: /api/v1/posts/:id
 router.route('/:id')
-    .get(getSinglePost); // Public, fetches one post
+    .get(getSinglePost) // Public, fetches one post
+    .patch(authMiddleware, updatePost) // Protected, update own post
+    .delete(authMiddleware, deletePost); // Protected, delete own post
 
 module.exports = router;

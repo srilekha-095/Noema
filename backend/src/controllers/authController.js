@@ -46,7 +46,10 @@ const login = catchAsync(async (req, res) => {
 
     const token = user.createJWT();
 
-    res.status(StatusCodes.OK).json({ msg: "User logged in successfully" });
+    res.status(StatusCodes.OK).json({
+        user: { username: user.username },
+        token,
+    });
 });
 
 module.exports = { register, login };
