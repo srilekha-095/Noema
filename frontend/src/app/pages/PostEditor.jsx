@@ -37,20 +37,24 @@ export default function PostEditor() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!validate()) return;
-    
-    const formData = new FormData();
-    formData.append('title', title.trim());
-    formData.append('content', content.trim());
-    formData.append('category', category);
-    if (image) {
-      formData.append('image', image);
-    }
 
     try {
       if (isEditing) {
-        alert("Editing is not yet supported by the backend! I will redirect you to home.");
-        navigate('/');
+        await api.patch(`/posts/${id}`, {
+          title: title.trim(),
+          content: content.trim(),
+          category,
+        });
+        navigate(`/post/${id}`);
       } else {
+        const formData = new FormData();
+        formData.append('title', title.trim());
+        formData.append('content', content.trim());
+        formData.append('category', category);
+        if (image) {
+          formData.append('image', image);
+        }
+
         await api.post('/posts', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -60,7 +64,7 @@ export default function PostEditor() {
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to save post");
+      alert(err.response?.data?.msg || "Failed to save post");
     }
   }
 
