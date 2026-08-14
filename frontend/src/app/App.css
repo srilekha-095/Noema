@@ -288,9 +288,9 @@
 
 .masthead-user {
   font-family: 'DM Mono', monospace;
-  font-size: 0.6875rem;
-  color: var(--muted-foreground);
-  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  letter-spacing: 0.1em;
 }
 
 .btn-logout {
@@ -570,14 +570,28 @@
 .card-meta {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
+.card-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.card-author,
 .card-date {
   font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   color: var(--muted-foreground);
+}
+
+.card-author {
+  color: var(--foreground);
+  opacity: 0.9;
 }
 
 .card-title {
@@ -595,7 +609,8 @@
 }
 
 .card-excerpt {
-  font-size: 0.875rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.87rem;
   color: var(--muted-foreground);
   line-height: 1.65;
   margin: 0;
@@ -838,6 +853,7 @@
 }
 
 .detail-body p {
+  font-family: 'DM Mono', monospace;
   font-size: 1.0625rem;
   line-height: 1.85;
   color: var(--foreground);
@@ -953,7 +969,7 @@
   background: var(--muted);
   border: 1px solid transparent;
   padding: 1.25rem;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'DM Mono', monospace;
   font-size: 1rem;
   color: var(--foreground);
   line-height: 1.85;

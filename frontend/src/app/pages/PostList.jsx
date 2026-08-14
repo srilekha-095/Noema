@@ -60,7 +60,7 @@ export default function PostList() {
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               {user ? (
                 <>
-                  <span className="eyebrow" style={{ marginRight: '0.5rem', textTransform: 'none' }}>Hi, {user.username}</span>
+                  <span className="masthead-user" style={{ marginRight: '0.5rem' }}>Hi, {user.username}</span>
                   <button className="btn-new" onClick={() => navigate('/new')}>
                     <Plus size={14} strokeWidth={2.5} />
                     New Post

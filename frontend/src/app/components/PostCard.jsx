@@ -12,7 +12,10 @@ export default function PostCard({ post, colSpan, onExpand, onContract, onClick 
         style={{ backgroundColor: "#E9E3D8" }}>
         <div className="card-meta">
           <CategoryBadge category={post.category} />
-          <span className="card-date">{fmt(post.createdAt)}</span>
+          <div className="card-meta-right">
+            <span className="card-author">{post.author?.username || "Unknown author"}</span>
+            <span className="card-date">{fmt(post.createdAt)}</span>
+          </div>
         </div>
         <h2 className="card-title">{post.title}</h2>
         <p className="card-excerpt">{excerpt(post.content, excerptLen)}</p>
