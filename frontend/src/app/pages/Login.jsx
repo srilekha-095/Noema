@@ -50,7 +50,7 @@ export default function Login() {
         </div>
 
         <div className="auth-left-footer">
-          {["Culture", "Technology", "Art", "Fiction", "Science", "Opinion"].map((cat, i, arr) => (
+          {["Culture", "Technology", "Politics", "Art", "Fiction", "Science", "Opinion"].map((cat, i, arr) => (
             <span key={cat} className="auth-left-footer-item">
               <span className="auth-cat">{cat}</span>
               {i < arr.length - 1 && <span className="auth-cat-dot">·</span>}

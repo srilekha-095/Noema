@@ -22,7 +22,10 @@ const register = catchAsync(async (req, res) => {
     const token = user.createJWT();
 
     res.status(StatusCodes.CREATED).json({
-        user: { username: user.username },
+        user: {
+            _id: user._id,
+            username: user.username,
+        },
         token,
     });
 });
@@ -47,7 +50,10 @@ const login = catchAsync(async (req, res) => {
     const token = user.createJWT();
 
     res.status(StatusCodes.OK).json({
-        user: { username: user.username },
+        user: {
+            _id: user._id,
+            username: user.username,
+        },
         token,
     });
 });

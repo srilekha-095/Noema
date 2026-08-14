@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, UnauthenticatedError } = require('../errors');
 const catchAsync = require('../utils/catchAsync');
@@ -43,9 +44,21 @@ const getAllPosts = catchAsync(async (req, res) => {
         queryObject.author = author;
     }
 
-    // Search in title if search term is provided
+    // Search by title or author username if a search term is provided
     if (search) {
-        queryObject.title = { $regex: search, $options: 'i' };
+        const matchingUsers = await User.find({
+            username: { $regex: search, $options: 'i' },
+        }).select('_id');
+
+        const userIds = matchingUsers.map((user) => user._id);
+
+        queryObject.$or = [
+            { title: { $regex: search, $options: 'i' } },
+        ];
+
+        if (userIds.length > 0) {
+            queryObject.$or.push({ author: { $in: userIds } });
+        }
     }
 
     const skip = (Number(page) - 1) * Number(limit);

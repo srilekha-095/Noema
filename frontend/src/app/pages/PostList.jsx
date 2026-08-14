@@ -64,6 +64,15 @@ export default function PostList() {
     }));
   }
 
+  function handleLogout() {
+    logout();
+    navigate('/login');
+  }
+
+  function handleAuthorToggle() {
+    setSelectedAuthor((prev) => (prev === user._id ? null : user._id));
+  }
+
   return (
     <div className="blog-app">
       <header className="blog-header">
@@ -80,7 +89,7 @@ export default function PostList() {
                     type="button"
                     className="masthead-user"
                     style={{ marginRight: '0.5rem', background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
-                    onClick={() => setSelectedAuthor((prev) => prev === user._id ? null : user._id)}
+                    onClick={handleAuthorToggle}
                   >
                     {selectedAuthor ? 'All feeds' : `Hi, ${user.username}`}
                   </button>
@@ -88,7 +97,7 @@ export default function PostList() {
                     <Plus size={14} strokeWidth={2.5} />
                     New Post
                   </button>
-                  <button className="btn-new" onClick={logout} style={{ background: 'transparent', color: 'var(--foreground)', border: '1px solid var(--foreground)' }}>
+                  <button className="btn-new" onClick={handleLogout} style={{ background: 'transparent', color: 'var(--foreground)', border: '1px solid var(--foreground)' }}>
                     <LogOut size={14} strokeWidth={2.5} />
                     Logout
                   </button>
@@ -112,7 +121,7 @@ export default function PostList() {
                 className="search-input"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search posts…"
+                placeholder="Search posts or authors…"
               />
               {search && (
                 <button

@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ['Culture', 'Technology', 'Science', 'Art', 'Fiction', 'Opinion'], // based on the frontend blueprint
+      enum: ['Culture', 'Technology', 'Politics', 'Science', 'Art', 'Fiction', 'Opinion'], // based on the frontend blueprint
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

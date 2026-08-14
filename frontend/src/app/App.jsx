@@ -16,9 +16,9 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<PostList />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/" element={user ? <PostList /> : <Register />} />
+      <Route path="/login" element={user ? <PostList /> : <Login />} />
+      <Route path="/register" element={user ? <PostList /> : <Register />} />
       <Route path="/new" element={user ? <PostEditor /> : <Login />} />
       <Route path="/post/:id" element={<PostDetail />} />
       <Route path="/post/:id/edit" element={user ? <PostEditor /> : <Login />} />
