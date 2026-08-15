@@ -7,6 +7,11 @@ import { fmt } from "../utils.js";
 import api from "../api.js";
 import { useAuth } from "../AuthContext.jsx";
 
+const rawApiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const backendOrigin = rawApiUrl
+  .replace(/\/api\/v1\/?$/, "")
+  .replace(/\/$/, "");
+
 export default function PostDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -46,7 +51,7 @@ export default function PostDetail() {
   const imageSrc = post?.image
     ? post.image.startsWith('http')
       ? post.image
-      : `http://localhost:5000${post.image}`
+      : `${backendOrigin}${post.image}`
     : null;
 
   return (
