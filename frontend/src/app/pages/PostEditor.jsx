@@ -40,11 +40,25 @@ export default function PostEditor() {
 
     try {
       if (isEditing) {
-        await api.patch(`/posts/${id}`, {
-          title: title.trim(),
-          content: content.trim(),
-          category,
-        });
+        if (image) {
+          const formData = new FormData();
+          formData.append('title', title.trim());
+          formData.append('content', content.trim());
+          formData.append('category', category);
+          formData.append('image', image);
+
+          await api.patch(`/posts/${id}`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+        } else {
+          await api.patch(`/posts/${id}`, {
+            title: title.trim(),
+            content: content.trim(),
+            category,
+          });
+        }
         navigate(`/post/${id}`);
       } else {
         const formData = new FormData();

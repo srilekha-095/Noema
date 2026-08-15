@@ -7,6 +7,26 @@
   font-family: 'Inter', system-ui, sans-serif;
 }
 
+/* Shared typography groups */
+.playfair, .auth-left-title, .auth-left-tagline, .auth-form-title,
+.masthead-text .site-title, .card-title, .detail-title,
+.input-title {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.dm-mono,
+.auth-left-eyebrow, .auth-cat, .auth-cat-dot, .auth-form-sub,
+.auth-field label, .auth-error, .auth-switch, .auth-switch-link,
+.masthead-actions, .masthead-user, .masthead-text .eyebrow, .search-input,
+.cat-btn, .cat-pick-btn, .empty-label, .card-author, .card-date, .card-read,
+.detail-date, .detail-edited, .field-label, .field-error, .editor-mode-label,
+.btn-new, .btn-back, .btn-edit, .btn-delete, .btn-publish, .btn-cancel,
+.btn-confirm-delete, .btn-modal-cancel,
+.footer-count, .modal-desc,
+.resize-span-indicator {
+  font-family: 'DM Mono', monospace;
+}
+
 /* ── Left editorial panel ── */
 
 .auth-left {
@@ -35,7 +55,6 @@
 }
 
 .auth-left-eyebrow {
-  font-family: 'DM Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -44,7 +63,6 @@
 }
 
 .auth-left-title {
-  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 900;
   font-size: clamp(3.5rem, 7vw, 5.5rem);
   line-height: 0.93;
@@ -66,7 +84,6 @@
 }
 
 .auth-left-tagline {
-  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.375rem;
   font-style: italic;
   line-height: 1.4;
@@ -98,7 +115,6 @@
 }
 
 .auth-cat {
-  font-family: 'DM Mono', monospace;
   font-size: 0.5625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -106,7 +122,6 @@
 }
 
 .auth-cat-dot {
-  font-family: 'DM Mono', monospace;
   font-size: 0.5625rem;
   color: rgba(245, 240, 232, 0.15);
 }
@@ -134,7 +149,6 @@
 }
 
 .auth-form-title {
-  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   font-size: 2.25rem;
   color: #1C1814;
@@ -143,7 +157,6 @@
 }
 
 .auth-form-sub {
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   color: var(--muted-foreground);
   margin: 0;
@@ -158,7 +171,6 @@
 }
 
 .auth-field label {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -188,7 +200,6 @@
 }
 
 .auth-error {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   color: var(--destructive);
   margin: 0 0 0.75rem;
@@ -198,7 +209,6 @@
 .btn-auth-submit {
   background: #1C1814;
   color: #F5F0E8;
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -217,7 +227,6 @@
 }
 
 .auth-switch {
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   color: var(--muted-foreground);
   margin: 0;
@@ -230,7 +239,6 @@
   border: none;
   border-bottom: 1px solid currentColor;
   color: #1C1814;
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   cursor: pointer;
   padding: 0 0 0.0625rem;
@@ -287,7 +295,6 @@
 }
 
 .masthead-user {
-  font-family: 'DM Mono', monospace;
   font-size: 0.9rem;
   color: var(--foreground);
   letter-spacing: 0.1em;
@@ -345,7 +352,6 @@
 }
 
 .masthead-text .eyebrow {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -354,7 +360,6 @@
 }
 
 .masthead-text .site-title {
-  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   line-height: 1;
@@ -392,7 +397,6 @@
   padding: 0.5rem 2rem 0.5rem 2.25rem;
   background: var(--muted);
   border: 1px solid transparent;
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   color: var(--foreground);
   width: 16rem;
@@ -434,7 +438,6 @@
 }
 
 .cat-btn {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -474,7 +477,6 @@
   gap: 0.5rem;
   background: var(--foreground);
   color: var(--background);
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -509,7 +511,6 @@
 }
 
 .empty-label {
-  font-family: 'DM Mono', monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -582,9 +583,7 @@
   margin-left: auto;
 }
 
-.card-author,
-.card-date {
-  font-family: 'DM Mono', monospace;
+.card-author, .card-date {
   font-size: 0.625rem;
   color: var(--muted-foreground);
 }
@@ -595,7 +594,6 @@
 }
 
 .card-title {
-  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   color: var(--foreground);
   line-height: 1.2;
@@ -621,7 +619,6 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -685,7 +682,6 @@
 /* ─── Category Badge ────────────────────────────────────────── */
 
 .badge {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -720,7 +716,6 @@
 }
 
 .footer-count {
-  font-family: 'DM Mono', monospace;
   font-size: 0.625rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1123,13 +1118,8 @@
 }
 
 @media (max-width: 600px) {
-  .blog-header .inner,
-  .blog-main,
-  .detail-header-inner,
-  .detail-main,
-  .editor-header-inner,
-  .editor-main,
-  .footer-inner {
+  .blog-header .inner, .blog-main, .detail-header-inner, .detail-main,
+  .editor-header-inner, .editor-main,.footer-inner {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
@@ -1151,11 +1141,7 @@
     align-items: flex-start;
   }
 
-  .search-input {
-    width: 100%;
-  }
-
-  .search-wrap {
+  .search-input, .search-wrap{
     width: 100%;
   }
 

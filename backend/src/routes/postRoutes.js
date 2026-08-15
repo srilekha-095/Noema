@@ -12,7 +12,7 @@ router.route('/')
 // Single post route: /api/v1/posts/:id
 router.route('/:id')
     .get(getSinglePost) // Public, fetches one post
-    .patch(authMiddleware, updatePost) // Protected, update own post
+    .patch(authMiddleware, upload.single('image'), updatePost) // Protected, update own post
     .delete(authMiddleware, deletePost); // Protected, delete own post
 
 module.exports = router;

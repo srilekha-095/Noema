@@ -24,6 +24,10 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: false, // Stores the URL or path to the uploaded image
     },
+    imagePublicId: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );

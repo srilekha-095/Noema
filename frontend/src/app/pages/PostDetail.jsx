@@ -43,6 +43,11 @@ export default function PostDetail() {
   if (!post) return <div style={{ padding: '2rem', textAlign: 'center' }}>Post not found.</div>;
 
   const isAuthor = user && post.author && (post.author._id === user._id || post.author === user._id || post.author.username === user.username);
+  const imageSrc = post?.image
+    ? post.image.startsWith('http')
+      ? post.image
+      : `http://localhost:5000${post.image}`
+    : null;
 
   return (
     <div className="blog-app">
@@ -50,7 +55,7 @@ export default function PostDetail() {
         <div className="detail-header-inner">
           <button className="btn-back" onClick={() => navigate('/')}>
             <ArrowLeft size={13} />
-            The Margin
+            Noema
           </button>
           
           {isAuthor && (
@@ -79,10 +84,10 @@ export default function PostDetail() {
 
         <h1 className="detail-title">{post.title}</h1>
         
-        {post.image && (
+        {imageSrc && (
           <div style={{ marginBottom: '2rem' }}>
             <img 
-              src={`http://localhost:5000${post.image}`} 
+              src={imageSrc}
               alt={post.title} 
               style={{ width: '100%', height: 'auto', maxHeight: '500px', objectFit: 'cover' }}
             />
@@ -90,9 +95,10 @@ export default function PostDetail() {
         )}
 
         <div className="detail-body">
-          {post.content.split("\n\n").map((para, i) => (
+          {/* {post.content.split("\n\n").map((para, i) => (
             <p key={i}>{para}</p>
-          ))}
+          ))} */}
+          <p style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
         </div>
       </main>
 

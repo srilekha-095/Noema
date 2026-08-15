@@ -3,6 +3,7 @@ const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, UnauthenticatedError } = require('../errors');
 const catchAsync = require('../utils/catchAsync');
+const { uploadImageBuffer, deleteCloudinaryImage } = require('../utils/cloudinary');
 
 const createPost = catchAsync(async (req, res) => {
     const { title, content, category } = req.body;
@@ -12,9 +13,11 @@ const createPost = catchAsync(async (req, res) => {
     }
 
     let image = null;
+    let imagePublicId = null;
     if (req.file) {
-        // req.file is populated by the multer middleware
-        image = `/uploads/${req.file.filename}`;
+        const uploadResult = await uploadImageBuffer(req.file.buffer, req.file.mimetype);
+        image = uploadResult.secure_url;
+        imagePublicId = uploadResult.public_id;
     }
 
     // req.user is populated by our authMiddleware
@@ -23,6 +26,7 @@ const createPost = catchAsync(async (req, res) => {
         content,
         category,
         image,
+        imagePublicId,
         author: req.user.userId,
     });
 
@@ -111,6 +115,16 @@ const updatePost = catchAsync(async (req, res) => {
     if (content) post.content = content;
     if (category) post.category = category;
 
+    if (req.file) {
+        if (post.imagePublicId) {
+            await deleteCloudinaryImage(post.imagePublicId);
+        }
+
+        const uploadResult = await uploadImageBuffer(req.file.buffer, req.file.mimetype);
+        post.image = uploadResult.secure_url;
+        post.imagePublicId = uploadResult.public_id;
+    }
+
     await post.save();
 
     const updatedPost = await Post.findById(id).populate('author', 'username');
@@ -128,6 +142,10 @@ const deletePost = catchAsync(async (req, res) => {
 
     if (post.author.toString() !== req.user.userId) {
         throw new UnauthenticatedError('You are not authorized to delete this post');
+    }
+
+    if (post.imagePublicId) {
+        await deleteCloudinaryImage(post.imagePublicId);
     }
 
     await post.deleteOne();
